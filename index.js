@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 
+const fs = require("fs");
 const inquirer = require("inquirer");
 
 // TODO: Create an array of questions for user input
@@ -17,12 +18,12 @@ const questions = [
   },
   {
     type: "input",
-    name: "app's function",
+    name: "function",
     message: "What does your app do?",
   },
   {
     type: "input",
-    name: "installation directions",
+    name: "installation",
     message: "How do you install your app?",
   },
   {
@@ -30,39 +31,24 @@ const questions = [
     name: "directions for use",
     message: "How would you explain how to use your app to a new user?",
   },
-  // 1.) What is your motivation behind building this app?
-  // 2.) What does your app do?
-  // 3.) How would you explain how to use your app to a new user?
-  // 4.) What steps does the user need to take to install your app?
 ];
-inquirer.prompt(questions).then((answers) => {
-  console.log(answers);
-});
-// inquirer
-//   .prompt([
-//     {
-//       type: "input",
-//       name: "app's function",
-//       message: "What does your app do?",
-//     },
-//   ])
-//   .then((answers) => {
-//     console.log(answers);
-//   });
-
-// inquirer
-//   .prompt([
-//     ,
-//   ])
-//   .then((answers) => {
-//     console.log(answers);
-//   }),
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  inquirer.prompt(questions).then((data) => {
+    console.log(data.title);
+    fileName = `${data.title.toLowerCase().split(" ").join("")}.md`;
+    console.log(fileName);
+    fs.writeFile(fileName, JSON.stringify(data, null, "\t"), (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  });
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  writeToFile();
+}
 
 // Function call to initialize app
 init();
