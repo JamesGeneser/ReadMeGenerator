@@ -128,6 +128,7 @@ function init() {
 init();
 
 //Title: My Application
+
 //Desc: This is a short description of what my app does
 
 //Install: Follow the download instructions on our webpage
@@ -135,6 +136,9 @@ init();
 //How to use: Follow the 'getting started' directions to use My Application
 
 //contrubute: Interested contributers can contact me at the email provided
+
 //tests: Placeholder for a test
+
 //gitHub: gitUserName
+
 //email: mymail@gmail.com
