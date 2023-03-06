@@ -1,4 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
+
+const { default: test } = require("node:test");
+
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
 
@@ -12,9 +15,8 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
-
-`;
+  const license = data.license;
+  console.log("this is licsense on markdown" + license);
 }
 
 module.exports = generateMarkdown;

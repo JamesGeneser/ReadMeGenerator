@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const inquirer = require("inquirer");
+const { listenerCount } = require("process");
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -13,12 +14,7 @@ const questions = [
 
   //   {
   //     type: "input",
-  //     name: "motivation",
-  //     message: "What motivated you to build this app?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "function",
+  //     name: "description",
   //     message: "What does your app do?",
   //   },
   //   {
@@ -28,12 +24,12 @@ const questions = [
   //   },
   //   {
   //     type: "input",
-  //     name: "directions",
+  //     name: "usage",
   //     message: "Explain how to use your app to a new user:",
   //   },
   //   {
   //     type: "input",
-  //     name: "contribution-guidelin",
+  //     name: "contribution",
   //     message: "What are the contribution guidelines for your app?",
   //   },
   //   {
@@ -42,6 +38,22 @@ const questions = [
   //     message:
   //       "Submit a test of your application, include instructions on how to run the test.",
   //   },
+  {
+    type: "list",
+    name: "license",
+    message: "Which license are you using?",
+    choices: ["MIT", "Apache2.0", "GPL", "BSD"],
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "What is your gitHub username:",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is your email address:",
+  },
 ];
 
 // TODO: Create a function to write README file
@@ -49,14 +61,53 @@ function writeToFile(fileName, data) {
   inquirer.prompt(questions).then((data) => {
     console.log(data.title);
     fileName = `${data.title.toLowerCase().split(" ").join("")}README.md`;
-    console.log(fileName);
 
-    const readMeTitle = `#${data.title}"`;
+    const generateMarkdown = require("./utils/generateMarkdown.js");
+    const license = data.license;
+    console.log("this is the license on index" + license);
 
-    fs.writeFile(
-      fileName,
-      JSON.stringify(readMeTitle, data, null, "\t"),
-      (err) => (err ? console.log(err) : console.log("Success!"))
+    const readMeTemplate = `# ${data.title}
+${data.description}
+<br>
+
+### Table of Contents
+- [Installation](#-installation-instructions)
+- [Usage](#-how-to-use)
+- [License](#-license)
+- [Contributing](#-how-to-contribute)
+- [Tests](#-tests)
+<br>
+
+<br>
+
+## Installation Instructions
+${data.installation}
+<br>
+
+## How to Use
+${data.usage}
+<br>
+
+![screen shot example of app page](./photos/app.png "example application")
+
+## License
+${generateMarkdown(data)}
+<br>
+
+## How to Contribute
+${data.contribution}
+<br>
+
+## Tests
+${data.test}
+
+## Questions
+[Link to GitHub](https://github.com/${data.github})
+
+     `;
+
+    fs.writeFile(fileName, readMeTemplate, (err) =>
+      err ? console.log(err) : console.log("Success!")
     );
   });
 }
