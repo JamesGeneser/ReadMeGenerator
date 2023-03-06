@@ -12,32 +12,32 @@ const questions = [
     message: "What is your app's name?",
   },
 
-  //   {
-  //     type: "input",
-  //     name: "description",
-  //     message: "What does your app do?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "installation",
-  //     message: "How do you install your app?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "usage",
-  //     message: "Explain how to use your app to a new user:",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "contribution",
-  //     message: "What are the contribution guidelines for your app?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "test",
-  //     message:
-  //       "Submit a test of your application, include instructions on how to run the test.",
-  //   },
+  {
+    type: "input",
+    name: "description",
+    message: "What does your app do?",
+  },
+  {
+    type: "input",
+    name: "installation",
+    message: "How do you install your app?",
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "Explain how to use your app to a new user:",
+  },
+  {
+    type: "input",
+    name: "contribution",
+    message: "What are the contribution guidelines for your app?",
+  },
+  {
+    type: "input",
+    name: "test",
+    message:
+      "Submit a test of your application, include instructions on how to run the test.",
+  },
   {
     type: "list",
     name: "license",
@@ -70,12 +70,16 @@ function writeToFile(fileName, data) {
 ${data.description}
 <br>
 
+
+<br>
+
 ### Table of Contents
-- [Installation](#-installation-instructions)
-- [Usage](#-how-to-use)
-- [License](#-license)
-- [Contributing](#-how-to-contribute)
-- [Tests](#-tests)
+- [Installation](#installation-instructions)
+- [Usage](#how-to-use)
+- [License](#license)
+- [Contributing](#how-to-contribute)
+- [Tests](#tests)
+
 <br>
 
 <br>
@@ -103,6 +107,9 @@ ${data.test}
 
 ## Questions
 [Link to GitHub](https://github.com/${data.github})
+    
+Contact me via email:
+    ${data.email} 
 
      `;
 
@@ -119,3 +126,15 @@ function init() {
 
 // Function call to initialize app
 init();
+
+//Title: My Application
+//Desc: This is a short description of what my app does
+
+//Install: Follow the download instructions on our webpage
+
+//How to use: Follow the 'getting started' directions to use My Application
+
+//contrubute: Interested contributers can contact me at the email provided
+//tests: Placeholder for a test
+//gitHub: gitUserName
+//email: mymail@gmail.com
